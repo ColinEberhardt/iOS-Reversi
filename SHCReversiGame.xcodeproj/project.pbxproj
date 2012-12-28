@@ -33,6 +33,9 @@
 		72C7E164168CF706009DA963 /* ReversiWhitePiece@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72C7E163168CF706009DA963 /* ReversiWhitePiece@2x.png */; };
 		72C7E168168CFACC009DA963 /* SHCBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C7E167168CFACC009DA963 /* SHCBoard.m */; };
 		72C7E16C168CFDAB009DA963 /* SHCBoardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C7E16B168CFDAB009DA963 /* SHCBoardTest.m */; };
+		72C7E16F168D8A25009DA963 /* SHCReversiBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C7E16E168D8A25009DA963 /* SHCReversiBoard.m */; };
+		72C7E172168D8A89009DA963 /* SHCBoardSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C7E171168D8A89009DA963 /* SHCBoardSquare.m */; };
+		72C7E175168D8AE3009DA963 /* SHCReversiBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C7E174168D8AE3009DA963 /* SHCReversiBoardView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,12 @@
 		72C7E169168CFB1E009DA963 /* BoardCellState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BoardCellState.h; path = Model/BoardCellState.h; sourceTree = "<group>"; };
 		72C7E16A168CFDAB009DA963 /* SHCBoardTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCBoardTest.h; sourceTree = "<group>"; };
 		72C7E16B168CFDAB009DA963 /* SHCBoardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCBoardTest.m; sourceTree = "<group>"; };
+		72C7E16D168D8A25009DA963 /* SHCReversiBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHCReversiBoard.h; path = Model/SHCReversiBoard.h; sourceTree = "<group>"; };
+		72C7E16E168D8A25009DA963 /* SHCReversiBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHCReversiBoard.m; path = Model/SHCReversiBoard.m; sourceTree = "<group>"; };
+		72C7E170168D8A89009DA963 /* SHCBoardSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHCBoardSquare.h; path = View/SHCBoardSquare.h; sourceTree = "<group>"; };
+		72C7E171168D8A89009DA963 /* SHCBoardSquare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHCBoardSquare.m; path = View/SHCBoardSquare.m; sourceTree = "<group>"; };
+		72C7E173168D8AE3009DA963 /* SHCReversiBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHCReversiBoardView.h; path = View/SHCReversiBoardView.h; sourceTree = "<group>"; };
+		72C7E174168D8AE3009DA963 /* SHCReversiBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHCReversiBoardView.m; path = View/SHCReversiBoardView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +211,8 @@
 				72C7E166168CFACC009DA963 /* SHCBoard.h */,
 				72C7E167168CFACC009DA963 /* SHCBoard.m */,
 				72C7E169168CFB1E009DA963 /* BoardCellState.h */,
+				72C7E16D168D8A25009DA963 /* SHCReversiBoard.h */,
+				72C7E16E168D8A25009DA963 /* SHCReversiBoard.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -209,6 +220,10 @@
 		72A5A07B1671D9D700AF63F4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				72C7E170168D8A89009DA963 /* SHCBoardSquare.h */,
+				72C7E171168D8A89009DA963 /* SHCBoardSquare.m */,
+				72C7E173168D8AE3009DA963 /* SHCReversiBoardView.h */,
+				72C7E174168D8AE3009DA963 /* SHCReversiBoardView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -352,6 +367,9 @@
 				72347606167601BE00185647 /* main.m in Sources */,
 				7234760A167604FA00185647 /* SHCMulticastDelegate.m in Sources */,
 				72C7E168168CFACC009DA963 /* SHCBoard.m in Sources */,
+				72C7E16F168D8A25009DA963 /* SHCReversiBoard.m in Sources */,
+				72C7E172168D8A89009DA963 /* SHCBoardSquare.m in Sources */,
+				72C7E175168D8AE3009DA963 /* SHCReversiBoardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

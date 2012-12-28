@@ -7,12 +7,17 @@
 //
 
 #import "SHCViewController.h"
+#import "SHCReversiBoard.h"
+#import "SHCReversiBoardView.h"
 
 @interface SHCViewController ()
 
 @end
 
 @implementation SHCViewController
+{
+    SHCReversiBoard* _board;
+}
 
 - (void)viewDidLoad
 {
@@ -22,6 +27,14 @@
     self.backgroundImage.image = [UIImage imageNamed: @"Reversi.png"];
     self.gameOverImage.image = [UIImage imageNamed: @"GameOver.png"];
     self.gameOverImage.hidden = YES;
+    
+    // create our game board
+    _board = [[SHCReversiBoard alloc] init];
+    [_board setToInitialState];
+    
+    // create a view
+    SHCReversiBoardView* reversiBoard = [[SHCReversiBoardView alloc] initWithFrame:CGRectMake(88,151,600,585) andBoard:_board];
+    [self.view addSubview:reversiBoard];
 }
 
 - (void)didReceiveMemoryWarning
