@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "SHCMulticastDelegate.h"
 #import "BoardCellState.h"
 
 /** An 8x8 playing board. */
 @interface SHCBoard : NSObject
+
+// multicasts changes in cell state. Each delegate is informed of changes in state of individual cells.
+@property (readonly) SHCMulticastDelegate* boardDelegate;
 
 // gets the state of the cell at the given location
 - (BoardCellState) cellStateAtColumn:(NSInteger) column andRow:(NSInteger) row;

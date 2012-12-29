@@ -40,6 +40,8 @@
         self.backgroundColor = [UIColor clearColor];
         
         [self update];
+        
+        [_board.boardDelegate addDelegate:self];
     }
     return self;
 }
@@ -52,6 +54,16 @@
     _whiteView.alpha = state == BoardCellStateWhitePiece ? 1.0 : 0.0;
     _blackView.alpha = state == BoardCellStateBlackPiece ? 1.0 : 0.0;
 }
+
+- (void)cellStateChanged:(BoardCellState)state forColumn:(NSInteger)column andRow:(NSInteger)row
+{
+    if ((column == _column && row == _row) ||
+        (column == -1 && row == -1))
+    {
+        [self update];
+    }
+}
+
 
 
 @end

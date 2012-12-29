@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "SHCReversiBoard.h"
+#import "SHCBoardDelegate.h"
 
-@interface SHCBoardSquare : UIView
+@interface SHCBoardSquare : UIView <SHCBoardDelegate>
+
 
 - (id) initWithFrame:(CGRect)frame column:(NSInteger)column row:(NSInteger)row board:(SHCReversiBoard*)board;
 
