@@ -42,6 +42,12 @@
         [self update];
         
         [_board.boardDelegate addDelegate:self];
+        
+        // add a tap recognizer
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
+                                                 initWithTarget:self action:@selector(cellTapped:)];
+        [self addGestureRecognizer:tapRecognizer];
+
     }
     return self;
 }
@@ -64,6 +70,13 @@
     }
 }
 
+- (void)cellTapped:(UITapGestureRecognizer*)recognizer
+{
+    if ([_board isValidMoveToColumn:_column andRow:_row])
+    {
+        [_board makeMoveToColumn:_column andRow:_row];
+    }
+}
 
 
 @end

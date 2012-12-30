@@ -11,6 +11,17 @@
 /** A playing board that board that enforces the rules of the game Reversi. */
 @interface SHCReversiBoard : SHCBoard
 
+
+// indicates the player who makes the next move
+@property (readonly) BoardCellState nextMove;
+
+// Returns whether the player who's turn it is can make the given move
+- (BOOL) isValidMoveToColumn:(NSInteger)column andRow:(NSInteger) row;
+
+// Makes the given move for the player who is currently taking their turn
+- (void) makeMoveToColumn:(NSInteger) column andRow:(NSInteger)row;
+
+
 // sets the board to the opening positions for Reversi
 - (void) setToInitialState;
 
