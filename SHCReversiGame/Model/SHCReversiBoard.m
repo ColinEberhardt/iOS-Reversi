@@ -125,8 +125,19 @@ BoardNavigationFunction BoardNavigationFunctionLeftDown = ^(NSInteger* c, NSInte
     // place the playing piece at the given location
     [self setCellState:self.nextMove forColumn:column  andRow:row];
     
+    // check the 8 play directions and flip pieces
+    for(int i=0; i<8; i++)
+    {
+        [self flipOponnentsCountersForColumn:column
+                                      andRow:row
+                      withNavigationFunction:_boardNavigationFunctions[i]
+                                     toState:self.nextMove];
+    }
+    
     _nextMove = [self invertState:_nextMove];
+    
 }
+
 
 - (BoardCellState) invertState: (BoardCellState)state
 {
@@ -181,6 +192,33 @@ BoardNavigationFunction BoardNavigationFunctionLeftDown = ^(NSInteger* c, NSInte
     }
     
     return NO;
+}
+
+- (void) flipOponnentsCountersForColumn:(int) column andRow:(int)row withNavigationFunction:(BoardNavigationFunction) navigationFunction toState:(BoardCellState) state
+{
+    // are any pieces surrounded in this direction?
+    if (![self moveSurroundsCountersForColumn:column
+                                       andRow:row
+                       withNavigationFunction:navigationFunction
+                                      toState:state])
+        return;
+    
+    BoardCellState opponentsState = [self invertState:state];
+    BoardCellState currentCellState;
+    
+    // flip counters until the edge of the boards is reached, or
+    // a piece of the current state is reached
+    do
+    {
+        // advance to the next cell
+        navigationFunction(&column, &row);
+        currentCellState = [super cellStateAtColumn:column andRow:row];
+        [self setCellState:state forColumn:column  andRow:row];
+    }
+    while(column>=0 && column<=7 &&
+          row>=0 && row<=7 &&
+          currentCellState == opponentsState);
+    
 }
 
 
