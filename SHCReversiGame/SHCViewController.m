@@ -35,6 +35,15 @@
     // create a view
     SHCReversiBoardView* reversiBoard = [[SHCReversiBoardView alloc] initWithFrame:CGRectMake(88,151,600,585) andBoard:_board];
     [self.view addSubview:reversiBoard];
+    
+    [self gameStateChanged];
+    [_board.reversiBoardDelegate addDelegate:self];
+}
+
+- (void)gameStateChanged
+{
+    _whiteScore.text = [NSString stringWithFormat:@"%d", _board.whiteScore];
+    _blackScore.text = [NSString stringWithFormat:@"%d", _board.blackScore];
 }
 
 - (void)didReceiveMemoryWarning

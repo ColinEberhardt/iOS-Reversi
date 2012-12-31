@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SHCViewController : UIViewController
+#import "SHCReversiBoardDelegate.h"
+
+@interface SHCViewController : UIViewController <SHCReversiBoardDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (weak, nonatomic) IBOutlet UILabel *blackScore;
 @property (weak, nonatomic) IBOutlet UILabel *whiteScore;

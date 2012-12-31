@@ -7,6 +7,7 @@
 //
 
 #import "SHCReversiBoard.h"
+#import "SHCReversiBoardDelegate.h"
 
 // A 'navigation' function. This takes the given row / column values and navigates in one of the 8 possible directions across the playing board.
 typedef void (^BoardNavigationFunction)(NSInteger*, NSInteger*);
@@ -50,6 +51,7 @@ BoardNavigationFunction BoardNavigationFunctionLeftDown = ^(NSInteger* c, NSInte
 @implementation SHCReversiBoard
 {
     BoardNavigationFunction _boardNavigationFunctions[8];
+    id<SHCReversiBoardDelegate> _delegate;
 }
 
 - (id)init
@@ -72,6 +74,10 @@ BoardNavigationFunction BoardNavigationFunctionLeftDown = ^(NSInteger* c, NSInte
     _boardNavigationFunctions[5]=BoardNavigationFunctionLeftUp;
     _boardNavigationFunctions[6]=BoardNavigationFunctionRightDown;
     _boardNavigationFunctions[7]=BoardNavigationFunctionRightUp;
+    
+    _reversiBoardDelegate = [[SHCMulticastDelegate alloc] init];
+    _delegate = (id)_reversiBoardDelegate;
+
     
 }
 
@@ -136,6 +142,14 @@ BoardNavigationFunction BoardNavigationFunctionLeftDown = ^(NSInteger* c, NSInte
     
     _nextMove = [self invertState:_nextMove];
     
+    _whiteScore = [self countCellsWithState:BoardCellStateWhitePiece];
+    _blackScore = [self countCellsWithState:BoardCellStateBlackPiece];
+    
+    if ([_delegate respondsToSelector:@selector(gameStateChanged)]) {
+        [_delegate gameStateChanged];
+    }
+
+
 }
 
 

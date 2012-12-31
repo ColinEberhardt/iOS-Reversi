@@ -61,4 +61,21 @@
     }
 }
 
+- (NSUInteger) countCellsWithState:(BoardCellState)state
+{
+    int count = 0;
+    for (int row = 0; row < 8; row++)
+    {
+        for (int col = 0; col < 8; col++)
+        {
+            if ([self cellStateAtColumn:col andRow:row] == state)
+            {
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+
 @end

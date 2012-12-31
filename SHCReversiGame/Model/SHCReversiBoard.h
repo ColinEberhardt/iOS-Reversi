@@ -31,4 +31,7 @@
 // the black payer's score
 @property (readonly) NSInteger blackScore;
 
+// multicasts game state changes
+@property (readonly) SHCMulticastDelegate* reversiBoardDelegate;
+
 @end

@@ -25,4 +25,8 @@
 // clears the entire board
 - (void) clearBoard;
 
+// counts the number of cells with the given state
+- (NSUInteger) countCellsWithState:(BoardCellState) state;
+
+
 @end
