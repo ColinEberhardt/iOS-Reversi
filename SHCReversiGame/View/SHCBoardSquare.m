@@ -55,10 +55,15 @@
 // updates the UI state
 - (void)update
 {
-    // show / hide the images based on the cell state
     BoardCellState state = [_board cellStateAtColumn:_column andRow:_row];
-    _whiteView.alpha = state == BoardCellStateWhitePiece ? 1.0 : 0.0;
-    _blackView.alpha = state == BoardCellStateBlackPiece ? 1.0 : 0.0;
+    
+    [UIView animateWithDuration:0.5f animations:^{
+        _whiteView.alpha = state == BoardCellStateWhitePiece ? 1.0 : 0.0;
+        _whiteView.transform = state == BoardCellStateWhitePiece ? CGAffineTransformIdentity : CGAffineTransformMakeTranslation(0, -20);
+        _blackView.alpha = state == BoardCellStateBlackPiece ? 1.0 : 0.0;
+        _blackView.transform = state == BoardCellStateBlackPiece ? CGAffineTransformIdentity : CGAffineTransformMakeTranslation(0, 20);
+        
+    }];
 }
 
 - (void)cellStateChanged:(BoardCellState)state forColumn:(NSInteger)column andRow:(NSInteger)row
