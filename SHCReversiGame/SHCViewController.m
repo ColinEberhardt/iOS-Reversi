@@ -38,6 +38,20 @@
     
     [self gameStateChanged];
     [_board.reversiBoardDelegate addDelegate:self];
+    
+    // add a tap recognizer
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
+                                             initWithTarget:self action:@selector(restartGame:)];
+    [self.view addGestureRecognizer:tapRecognizer];
+}
+
+- (void)restartGame:(UITapGestureRecognizer*)recognizer
+{
+    if (_board.gameHasFinished)
+    {
+        [_board setToInitialState];
+        [self gameStateChanged];
+    }
 }
 
 - (void)gameStateChanged
