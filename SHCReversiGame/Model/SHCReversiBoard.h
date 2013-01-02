@@ -31,6 +31,9 @@
 // the black payer's score
 @property (readonly) NSInteger blackScore;
 
+// indicates whether the game has finished
+@property (readonly) BOOL gameHasFinished;
+
 // multicasts game state changes
 @property (readonly) SHCMulticastDelegate* reversiBoardDelegate;
 

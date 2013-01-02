@@ -42,6 +42,7 @@
 
 - (void)gameStateChanged
 {
+    _gameOverImage.hidden = !_board.gameHasFinished;
     _whiteScore.text = [NSString stringWithFormat:@"%d", _board.whiteScore];
     _blackScore.text = [NSString stringWithFormat:@"%d", _board.blackScore];
 }
