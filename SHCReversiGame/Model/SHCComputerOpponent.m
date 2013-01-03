@@ -8,20 +8,27 @@
 
 #import "SHCComputerOpponent.h"
 
+typedef struct
+{
+    NSInteger column;
+    NSInteger row;
+} Move;
+
+
 @implementation SHCComputerOpponent
 {
     SHCReversiBoard* _board;
     BoardCellState _computerColor;
+    NSInteger _maxDepth;
 }
 
-- (id)initWithBoard:(SHCReversiBoard *)board color:(BoardCellState)computerColor
+- (id)initWithBoard:(SHCReversiBoard *)board color:(BoardCellState)computerColor maxDepth:(NSInteger)depth
 {
     if (self = [super init])
     {
         _board = board;
         _computerColor = computerColor;
-        
-        // listen to game state changes in order to know when to make a move
+        _maxDepth = depth;
         [_board.reversiBoardDelegate addDelegate:self];
     }
     return self;
@@ -39,42 +46,104 @@
 // Determines which move to make
 - (void)makeNextMove
 {
+    Move bestMove = {.column = -1, .row = -1};
     NSInteger bestScore = NSIntegerMin;
-    NSInteger bestRow, bestColumn;;
     
-    // check every possible move, then select the one with the best 'score'
-    for (NSInteger row = 0; row < 8; row++)
+    // check every valid move for this particular board, then select the one with the best 'score'
+    NSArray* moves = [self validMovesForBoard:_board];
+    for(NSValue* moveValue in moves)
     {
-        for (NSInteger col = 0; col < 8; col++)
+        Move nextMove;
+        [moveValue getValue:&nextMove];
+        
+        // clone the current board and make this move
+        SHCReversiBoard* testBoard = [_board copyWithZone:nil];
+        [testBoard makeMoveToColumn:nextMove.column andRow:nextMove.row];
+        
+        // determine the score for this move
+        NSInteger scoreForMove = [self scoreForBoard:testBoard depth:1];
+        
+        // pick the best
+        if (scoreForMove > bestScore || bestScore == NSIntegerMin)
         {
-            if ([_board isValidMoveToColumn:col andRow:row])
+            bestScore = scoreForMove;
+            bestMove.row = nextMove.row;
+            bestMove.column = nextMove.column;
+        }
+    }
+    
+    if (bestMove.column != -1 && bestMove.row != -1)
+    {
+        [_board makeMoveToColumn:bestMove.column andRow:bestMove.row];
+    }
+}
+
+// Computes the score for the given board
+- (NSInteger)scoreForBoard:(SHCReversiBoard*)board depth:(NSInteger)depth
+{
+    // if we have reached the maximum search depth, then just compute the score of the current
+    // board state
+    if (depth >= _maxDepth)
+    {
+        return _computerColor == BoardCellStateWhitePiece ?
+        board.whiteScore - board.blackScore :
+        board.blackScore - board.whiteScore;
+    }
+    
+    NSInteger minMax = NSIntegerMin;
+    
+    // check every valid next move for this particular board
+    NSArray* moves = [self validMovesForBoard:board];
+    for(NSValue* moveValue in moves)
+    {
+        Move nextMove;
+        [moveValue getValue:&nextMove];
+        
+        // clone the current board and make the move
+        SHCReversiBoard* testBoard = [_board copyWithZone:nil];
+        [testBoard makeMoveToColumn:nextMove.column andRow:nextMove.row];
+        
+        // compute the score for this board
+        NSInteger score = [self scoreForBoard:testBoard depth: depth+1];
+        
+        // pick the best score
+        if (depth % 2 == 0)
+        {
+            if (score > minMax || minMax == NSIntegerMin)
             {
-                // clone the current board
-                SHCReversiBoard* testBoard = [_board copyWithZone:nil];
-                
-                // make this move
-                [testBoard makeMoveToColumn:col andRow:row];
-                
-                // compute the score - i.e. the difference in black and white score
-                int score = _computerColor == BoardCellStateWhitePiece ?
-                testBoard.whiteScore - testBoard.blackScore :
-                testBoard.blackScore - testBoard.whiteScore;
-                
-                // record the best score
-                if (score > bestScore)
-                {
-                    bestScore = score;
-                    bestRow = row;
-                    bestColumn = col;
-                }
+                minMax = score;
+            }
+        }
+        else
+        {
+            if (score < minMax || minMax == NSIntegerMin)
+            {
+                minMax = score;
             }
         }
     }
     
-    if (bestScore > NSIntegerMin)
+    return minMax;
+}
+
+// returns an array of valid next moves for the given board
+- (NSArray*) validMovesForBoard:(SHCReversiBoard*) board
+{
+    NSMutableArray* moves = [[NSMutableArray alloc] init];
+    
+    for (NSUInteger row = 0; row < 8; row++)
     {
-        [_board makeMoveToColumn:bestColumn andRow:bestRow];
-    }
+        for (NSUInteger col = 0; col < 8; col++)
+        {
+            if ([board isValidMoveToColumn:col andRow:row])
+            {
+                Move move = {.column = col, .row = row};
+                [moves addObject:[NSValue valueWithBytes:&move objCType:@encode(Move)]];
+            }
+        }
+    } 
+    
+    return moves;
 }
 
 @end
