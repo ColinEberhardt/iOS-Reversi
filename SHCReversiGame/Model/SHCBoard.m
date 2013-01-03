@@ -27,6 +27,15 @@
     return self;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    SHCBoard* board = [[[self class] allocWithZone:zone] init];
+    memcpy(board->_board, _board, sizeof(NSUInteger) * 8 * 8);
+    board->_boardDelegate = [[SHCMulticastDelegate alloc] init];
+    board->_delegate = (id)_boardDelegate;
+    return board;
+}
+
 - (BoardCellState)cellStateAtColumn:(NSInteger)column andRow:(NSInteger)row
 {
     [self checkBoundsForColumn:column andRow:row];

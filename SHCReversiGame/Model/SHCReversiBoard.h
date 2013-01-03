@@ -9,7 +9,7 @@
 #import "SHCBoard.h"
 
 /** A playing board that board that enforces the rules of the game Reversi. */
-@interface SHCReversiBoard : SHCBoard
+@interface SHCReversiBoard : SHCBoard <NSCopying>
 
 
 // indicates the player who makes the next move

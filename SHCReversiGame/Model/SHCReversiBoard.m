@@ -76,9 +76,16 @@ BoardNavigationFunction BoardNavigationFunctionLeftDown = ^(NSInteger* c, NSInte
     _boardNavigationFunctions[7]=BoardNavigationFunctionRightUp;
     
     _reversiBoardDelegate = [[SHCMulticastDelegate alloc] init];
-    _delegate = (id)_reversiBoardDelegate;
+    _delegate = (id)_reversiBoardDelegate; 
+}
 
-    
+- (id)copyWithZone:(NSZone *)zone
+{
+    SHCReversiBoard* board = [super copyWithZone:zone];
+    board->_nextMove = _nextMove;
+    board->_whiteScore = _whiteScore;
+    board->_blackScore = _blackScore;
+    return board;
 }
 
 - (void)setToInitialState

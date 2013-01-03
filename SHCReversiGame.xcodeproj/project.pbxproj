@@ -36,6 +36,7 @@
 		72C7E16F168D8A25009DA963 /* SHCReversiBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C7E16E168D8A25009DA963 /* SHCReversiBoard.m */; };
 		72C7E172168D8A89009DA963 /* SHCBoardSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C7E171168D8A89009DA963 /* SHCBoardSquare.m */; };
 		72C7E175168D8AE3009DA963 /* SHCReversiBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C7E174168D8AE3009DA963 /* SHCReversiBoardView.m */; };
+		72D4A2701694E80600DBE2D6 /* SHCComputerOpponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D4A26F1694E80600DBE2D6 /* SHCComputerOpponent.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,8 @@
 		72C7E174168D8AE3009DA963 /* SHCReversiBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHCReversiBoardView.m; path = View/SHCReversiBoardView.m; sourceTree = "<group>"; };
 		72C7E176168ED379009DA963 /* SHCBoardDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SHCBoardDelegate.h; path = Model/SHCBoardDelegate.h; sourceTree = "<group>"; };
 		72C7E17716920352009DA963 /* SHCReversiBoardDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SHCReversiBoardDelegate.h; path = Model/SHCReversiBoardDelegate.h; sourceTree = "<group>"; };
+		72D4A26E1694E80600DBE2D6 /* SHCComputerOpponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHCComputerOpponent.h; path = Model/SHCComputerOpponent.h; sourceTree = "<group>"; };
+		72D4A26F1694E80600DBE2D6 /* SHCComputerOpponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHCComputerOpponent.m; path = Model/SHCComputerOpponent.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +220,8 @@
 				72C7E16E168D8A25009DA963 /* SHCReversiBoard.m */,
 				72C7E176168ED379009DA963 /* SHCBoardDelegate.h */,
 				72C7E17716920352009DA963 /* SHCReversiBoardDelegate.h */,
+				72D4A26E1694E80600DBE2D6 /* SHCComputerOpponent.h */,
+				72D4A26F1694E80600DBE2D6 /* SHCComputerOpponent.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -374,6 +379,7 @@
 				72C7E16F168D8A25009DA963 /* SHCReversiBoard.m in Sources */,
 				72C7E172168D8A89009DA963 /* SHCBoardSquare.m in Sources */,
 				72C7E175168D8AE3009DA963 /* SHCReversiBoardView.m in Sources */,
+				72D4A2701694E80600DBE2D6 /* SHCComputerOpponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
